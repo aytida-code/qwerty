@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  eureka-server:
+    build:
+      context: .
+      dockerfile: eureka-server/Dockerfile
+    ports:
+      - "21613:21613"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:21613/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  gateway-service:
+    build:
+      context: .
+      dockerfile: gateway-service/Dockerfile
+    ports:
+      - "24348:24348"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:24348/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+
+  task-service:
+    build:
+      context: .
+      dockerfile: task-service/Dockerfile
+    ports:
+      - "28921:28921"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:28921/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+
+  user-service:
+    build:
+      context: .
+      dockerfile: user-service/Dockerfile
+    ports:
+      - "27542:27542"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:27542/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+
+  project-service:
+    build:
+      context: .
+      dockerfile: project-service/Dockerfile
+    ports:
+      - "21129:21129"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:21129/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+
