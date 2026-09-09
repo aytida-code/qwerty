@@ -1,26 +1,23 @@
-COMMIT_MESSAGE: Switch all business services from PostgreSQL to MySQL
+COMMIT_MESSAGE: Update MySQL database URL across business services
 
 ## Features Added
-- Switched the project, task, and user business services from PostgreSQL to MySQL.
-- Made MySQL connection URL, username, and password configurable through environment variables while retaining compatible local defaults.
+- Updated all business services to use the resolved MySQL database URL.
+- Preserved the existing MySQL Connector/J, API-key authentication, CORS, and service functionality.
 
 ## Files Modified
-- `project-service/pom.xml` — replaced the PostgreSQL JDBC runtime dependency with MySQL Connector/J.
-- `task-service/pom.xml` — replaced the PostgreSQL JDBC runtime dependency with MySQL Connector/J.
-- `user-service/pom.xml` — replaced the PostgreSQL JDBC runtime dependency with MySQL Connector/J.
-- `project-service/src/main/resources/application.properties` — configured the MySQL JDBC URL and driver with environment-backed connection settings.
-- `task-service/src/main/resources/application.properties` — configured the MySQL JDBC URL and driver with environment-backed connection settings.
-- `user-service/src/main/resources/application.properties` — configured the MySQL JDBC URL and driver with environment-backed connection settings.
+- `project-service/src/main/resources/application.properties` — changed the environment-backed MySQL JDBC fallback URL.
+- `task-service/src/main/resources/application.properties` — changed the environment-backed MySQL JDBC fallback URL.
+- `user-service/src/main/resources/application.properties` — changed the environment-backed MySQL JDBC fallback URL.
+- `ai_changes.md` — recorded this database endpoint update and verification result.
 
 ## Files Added
 - None.
 
 ## Secrets Moved
-- `spring.datasource.username` -> `MYSQL_USERNAME` environment variable with the existing local default.
-- `spring.datasource.password` -> `MYSQL_PASSWORD` environment variable with the existing local default.
+- None; existing datasource credentials remain environment-backed as `MYSQL_USERNAME` and `MYSQL_PASSWORD`.
 
 ## DB URLs Resolved
-- `jdbc:postgresql://localhost:5432/gen_a102c58a56e9` -> `jdbc:mysql://localhost:3306/gen_a102c58a56e9` for project-service, task-service, and user-service.
+- `jdbc:mysql://localhost:3306/gen_a102c58a56e9` -> `jdbc:mysql://localhost:3306/gen_12736d347011` for project-service, task-service, and user-service.
 
 ## Compilation Result
 PASSED — `mvn compile -q` and `mvn package -DskipTests -q` completed successfully with Java 21.0.12.1.
