@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-export SERVER_PORT="${SERVER_PORT:-21690}"
+export SERVER_PORT="${SERVER_PORT:-28811}"
 if [ -f "./start.sh" ]; then
   bash ./start.sh
 else
