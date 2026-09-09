@@ -5,7 +5,7 @@ Multi-module Java + Spring Boot + Spring Cloud microservices project.
 - **groupId**: `com.example`
 - **Modules**:
 - **eureka-server** (EUREKA_SERVER) — http://localhost:21613
-- **gateway-service** (GATEWAY) — http://localhost:24348
+- **gateway-service** (GATEWAY) — http://localhost:21690
 - **task-service** (BUSINESS_SERVICE) — http://localhost:28921
 - **user-service** (BUSINESS_SERVICE) — http://localhost:27542
 - **project-service** (BUSINESS_SERVICE) — http://localhost:21129

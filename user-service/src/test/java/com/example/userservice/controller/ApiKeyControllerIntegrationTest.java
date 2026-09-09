@@ -23,7 +23,7 @@ class ApiKeyControllerIntegrationTest {
 
   @Autowired private TestRestTemplate restTemplate;
 
-  @Value("${ADMIN_API_KEY:}")
+  @Value("${app.secret.admin-api-key}")
   private String adminKey;
 
   private Long createdId;

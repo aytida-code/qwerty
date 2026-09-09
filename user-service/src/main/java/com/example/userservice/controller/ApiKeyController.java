@@ -31,7 +31,7 @@ public class ApiKeyController {
 
   private final ApiKeyService apiKeyService;
 
-  @Value("${ADMIN_API_KEY:}")
+  @Value("${app.secret.admin-api-key}")
   private String configuredAdminKey;
 
   public ApiKeyController(ApiKeyService apiKeyService) {
