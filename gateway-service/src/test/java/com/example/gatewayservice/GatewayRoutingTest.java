@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 class GatewayRoutingTest {
 
   private static final HttpClient CLIENT = HttpClient.newHttpClient();
-  private static final int GATEWAY_PORT = 24348;
+  private static final int GATEWAY_PORT = 29472;
 
   private void assertRoute(String service) throws Exception {
     HttpRequest request =

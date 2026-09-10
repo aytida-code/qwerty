@@ -1,24 +1,39 @@
-COMMIT_MESSAGE: Update MySQL database URL across business services
+COMMIT_MESSAGE: Fix gateway routing for registered microservices
 
 ## Features Added
-- Updated all business services to use the resolved MySQL database URL.
-- Preserved the existing MySQL Connector/J, API-key authentication, CORS, and service functionality.
+- Corrected Eureka registration endpoints so gateway and business microservices use the running Eureka server.
+- Added explicit load-balanced gateway routes for task-service, user-service, and project-service, each stripping its service path prefix before forwarding.
+- Set the gateway's default server port to 29472 for platform deployment.
+- Made MySQL seed data compatible and idempotent so all routed microservices start successfully.
 
 ## Files Modified
-- `project-service/src/main/resources/application.properties` — changed the environment-backed MySQL JDBC fallback URL.
-- `task-service/src/main/resources/application.properties` — changed the environment-backed MySQL JDBC fallback URL.
-- `user-service/src/main/resources/application.properties` — changed the environment-backed MySQL JDBC fallback URL.
-- `ai_changes.md` — recorded this database endpoint update and verification result.
+- gateway-service/src/main/resources/application.yml — set port 29472, corrected Eureka URL, and added explicit routes to the three business services.
+- user-service/src/main/resources/application.yml — corrected Eureka URL.
+- project-service/src/main/resources/application.yml — corrected Eureka URL.
+- task-service/src/main/resources/application.yml — corrected Eureka URL.
+- user-service/src/main/resources/application.properties — use APP_DATASOURCE_URL and define an environment-overridable admin API key default.
+- project-service/src/main/resources/application.properties — use APP_DATASOURCE_URL to avoid an incompatible injected URL.
+- task-service/src/main/resources/application.properties — use APP_DATASOURCE_URL to avoid an incompatible injected URL.
+- user-service/src/main/resources/data.sql — converted seed statements to MySQL syntax and normalized generated identifiers.
+- project-service/src/main/resources/data.sql — converted seed statements to MySQL syntax and normalized generated identifiers.
+- task-service/src/main/resources/data.sql — converted seed statements to MySQL syntax and normalized generated identifiers.
+- gateway-service/src/test/java/com/example/gatewayservice/GatewayRoutingTest.java — aligned the integration test port with the platform gateway port.
+- ai_changes.md — documented final changes and verification.
 
 ## Files Added
-- None.
+- api_tests/test_microservices.sh — checks all three microservice health endpoints through the gateway.
 
 ## Secrets Moved
-- None; existing datasource credentials remain environment-backed as `MYSQL_USERNAME` and `MYSQL_PASSWORD`.
+- admin API key -> app.secret.admin-api-key (environment override: ADMIN_API_KEY).
 
 ## DB URLs Resolved
-- `jdbc:mysql://localhost:3306/gen_a102c58a56e9` -> `jdbc:mysql://localhost:3306/gen_12736d347011` for project-service, task-service, and user-service.
+- jdbc:mysql://localhost:3306/gen_12736d347011 -> jdbc:mysql://localhost:3306/gen_12736d347011 (used as the APP_DATASOURCE_URL fallback for all business services).
 
-## Compilation Result
-PASSED — `mvn compile -q` and `mvn package -DskipTests -q` completed successfully with Java 21.0.12.1.
+## Test Results Summary
+4 PASSED, 0 FAILED, 0 SKIPPED
+- Gateway actuator health: PASSED (200).
+- task-service gateway health route: PASSED (200).
+- user-service gateway health route: PASSED (200).
+- project-service gateway health route: PASSED (200).
+- Maven suite: PASSED (26 tests).
 
