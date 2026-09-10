@@ -8,6 +8,8 @@ public class ProjectRequest {
 
   private String description;
 
+  private String summary;
+
   /** Only honoured for SUPER_ADMIN callers; others are scoped to their own organization. */
   private Long organizationId;
 
@@ -25,6 +27,14 @@ public class ProjectRequest {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getSummary() {
+    return summary;
+  }
+
+  public void setSummary(String summary) {
+    this.summary = summary;
   }
 
   public Long getOrganizationId() {

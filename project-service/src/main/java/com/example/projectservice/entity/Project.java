@@ -21,6 +21,8 @@ public class Project {
 
   @Column private String description;
 
+  @Column private String summary;
+
   @Column(name = "organization_id", nullable = false)
   private Long organizationId;
 
@@ -55,6 +57,14 @@ public class Project {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getSummary() {
+    return summary;
+  }
+
+  public void setSummary(String summary) {
+    this.summary = summary;
   }
 
   public Long getOrganizationId() {

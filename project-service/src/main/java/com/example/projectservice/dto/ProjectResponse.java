@@ -8,6 +8,7 @@ public class ProjectResponse {
   private Long id;
   private String name;
   private String description;
+  private String summary;
   private Long organizationId;
   private Long createdBy;
   private String status;
@@ -18,6 +19,7 @@ public class ProjectResponse {
     dto.id = project.getId();
     dto.name = project.getName();
     dto.description = project.getDescription();
+    dto.summary = project.getSummary();
     dto.organizationId = project.getOrganizationId();
     dto.createdBy = project.getCreatedBy();
     dto.status = project.getStatus();
@@ -35,6 +37,10 @@ public class ProjectResponse {
 
   public String getDescription() {
     return description;
+  }
+
+  public String getSummary() {
+    return summary;
   }
 
   public Long getOrganizationId() {

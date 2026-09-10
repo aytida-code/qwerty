@@ -14,6 +14,10 @@ This project provides a multi-module Spring Boot and Spring Cloud microservices 
 - **user-service** (BUSINESS_SERVICE) — http://localhost:27542
 - **project-service** (BUSINESS_SERVICE) — http://localhost:21129
 
+### Project summary field
+
+Projects include an optional `summary` field for a concise project overview. It is accepted when creating or updating a project and returned by project endpoints.
+
 ## Build
 
 ```bash

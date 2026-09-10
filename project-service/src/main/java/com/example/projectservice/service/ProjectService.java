@@ -50,6 +50,7 @@ public class ProjectService {
     Project project = new Project();
     project.setName(request.getName());
     project.setDescription(request.getDescription());
+    project.setSummary(request.getSummary());
     project.setOrganizationId(orgId);
     project.setCreatedBy(caller.getId());
     Project saved = projectRepository.save(project);
@@ -95,6 +96,7 @@ public class ProjectService {
     assertManageAccess(caller, project);
     project.setName(request.getName());
     project.setDescription(request.getDescription());
+    project.setSummary(request.getSummary());
     return ProjectResponse.from(projectRepository.save(project));
   }
 
