@@ -30,4 +30,6 @@ send_report_email.py
 server.log
 start.log
 test_results.md
+changes_report.docx
+start_04193e5222c9ef67.sh
 .microservices_ports.json
