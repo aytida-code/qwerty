@@ -2,6 +2,10 @@
 
 Multi-module Java + Spring Boot + Spring Cloud microservices project.
 
+## Project Summary
+
+This project is a multi-module Spring Boot and Spring Cloud microservices application.
+
 - **groupId**: `com.example`
 - **Modules**:
 - **eureka-server** (EUREKA_SERVER) — http://localhost:21613
