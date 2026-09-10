@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:29472}
+  port: ${SERVER_PORT:23334}
 
 spring:
   application:
@@ -35,7 +35,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:21613/eureka
+      defaultZone: ${EUREKA_SERVER_URL:http://eureka-server:21613/eureka/}
   instance:
     prefer-ip-address: true
 

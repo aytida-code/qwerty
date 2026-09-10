@@ -18,9 +18,9 @@ services:
       context: .
       dockerfile: gateway-service/Dockerfile
     ports:
-      - "21690:21690"
+      - "23334:23334"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:21690/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:23334/actuator/health"]
       interval: 10s
       timeout: 5s
       retries: 5

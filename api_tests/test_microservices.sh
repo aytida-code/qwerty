@@ -1,5 +1,5 @@
 #!/bin/bash
-BASE_URL="http://localhost:29472"
+BASE_URL="http://localhost:23334"
 TOKEN=""
 
 check_route() {
